@@ -1,4 +1,4 @@
-
+import './landingPage.css'
 
 export const LandingPage = () => {
 
