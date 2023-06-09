@@ -13,25 +13,38 @@ function App() {
   //pokemon-our data
   //setPokemon-allow us to update that data (that state), for example, if we go to different page it updates
   const [pokemon, setPokemon] = useState([]);
+  const[currentPageUrl, setCurrentPageUrl] = useState("https://pokeapi.co/api/v2/pokemon");
+  const[nextPageUrl, setNextPageUrl] = useState();
+  const[prevPageUrl, setPrevPage] = useState();
 
   const fetchPokemons = () => {
     //    making a get request to the server to get all the pokemons
     const URL = "https://pokeapi.co/api/v2/pokemon";
-    axios.get(URL).
-      then((response) => {
-
+    axios.get(URL).then((response) => {
         console.log(response);
         console.log("Stigao je odgovor sa glavnog fetcha... " + response);
-
-
+      // next and previous variable we get from or url
+        setNextPageUrl(response.data.next);
+        setNextPageUrl(response.data.previous);
         setPokemon(response.data.results)
 
       })
   };
 
+  //   useEffect is a hook that allows us to run some code when the component is mounted
   useEffect(() => {
     fetchPokemons();
-  }, [])
+    // when te url of page changes reload whole page and fetch new data
+  }, [currentPageUrl])
+
+  // creating simple function for going to next and previous page
+  function gotoNextPage (){
+    setCurrentPageUrl(nextPageUrl);
+  }
+
+  function returntoPrevpage (){
+    setCurrentPageUrl(prevPageUrl);
+  }
 
 
   return (
@@ -39,7 +52,9 @@ function App() {
       <div className="App">
         <Header />
         <LandingPage pokemon={pokemon} />
-        <Pagination />
+        <Pagination 
+         gotoNextPage ={gotoNextPage}
+         returntoPrevpage={returntoPrevpage} />
         <Footer />
 
       </div>
