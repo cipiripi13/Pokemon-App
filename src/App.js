@@ -1,38 +1,44 @@
 
 import './App.css';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Header } from './components/Header/Header';
 import { Footer } from './components/Footer/Footer';
 import { LandingPage } from './components/LandingPage/LandingPage';
 
 function App() {
+  //  importing useState so we can store some data when we retrive it from server
+   const [pokemon, setPokemon] = useState([]);
 
-  // making request using axios
-  axios.get("https://pokeapi.co/api/v2/pokemon").
-  then(function(response){
-    
-    console.log(response);
-    console.log(response.data.results);
-    // var name = response.data.result.name;
-    // var ul = document.createElement('ul');
-    // document.body.appendChild(ul);
-    // // looping through the data and creating a list of pokemon names
-    // for(var i = 0; i < response.data.results.length; i++){
-    //   var li = document.createElement('li');
-    //   //      li.innerHTML = response.data.results[i].name
-    //        li.innerHTML = response.data.results[i].name;
-    //        ul.appendChild(li);
+   const fetchPokemons = () => {
+   //    making a get request to the server to get all the pokemons
+    const url = "https://pokeapi.co/api/v2/pokemon";
+    axios.get(url).
+    then((response) => {
+      
+      
+      console.log("Stigao je odgovor sa glavnog fetcha... " + response);
+      
 
-    //}
-    });
+       setPokemon(response.data.results)
+      
+   })};
+
+      useEffect (() => {
+        console.log('fetchujemo kada se komp mountuje');
+        fetchPokemons();
+      }, [])
+ 
   
   return (
+    <>
     <div className="App">
       <Header/>
-      <LandingPage/>
+      <LandingPage pokemon={pokemon}/>
       <Footer/>
       
     </div>
+    </>
   );
 }
 
