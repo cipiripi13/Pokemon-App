@@ -6,6 +6,9 @@
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+
+  box-shadow: rgb(255, 198, 0) -2px -2px 2px 2px;
+  
 }
 .logoImg {
   width: 300px;
