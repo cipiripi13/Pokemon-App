@@ -1,3 +1,5 @@
+#GITHUB pages activated --- application deployed
+
 #1. step
 Creating folder and files using npx crreate-react-app
 
