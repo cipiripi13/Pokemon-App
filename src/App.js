@@ -8,25 +8,33 @@ import { LandingPage } from './components/LandingPage/LandingPage';
 import Pagination from './components/Pagination/Pagination';
 
 function App() {
+  // let initalUrl = "https://pokeapi.co/api/v2/pokemon";
   //importing useState so we can store some data when we retrive it from server
   //and it allows our component to be functional
   //pokemon-our data
   //setPokemon-allow us to update that data (that state), for example, if we go to different page it updates
   const [pokemon, setPokemon] = useState([]);
   const[currentPageUrl, setCurrentPageUrl] = useState("https://pokeapi.co/api/v2/pokemon");
-  const[nextPageUrl, setNextPageUrl] = useState();
-  const[prevPageUrl, setPrevPage] = useState();
+  const[nextPageUrl, setNextPageUrl] = useState('');
+  const[prevPageUrl, setPrevPageUrl] = useState('');
+  const[loading, setLoading] = useState(true);
+
+  
 
   const fetchPokemons = () => {
     //    making a get request to the server to get all the pokemons
-    const URL = "https://pokeapi.co/api/v2/pokemon";
-    axios.get(URL).then((response) => {
+   
+    axios.get(currentPageUrl).then((response) => {
         console.log(response);
         console.log("Stigao je odgovor sa glavnog fetcha... " + response);
       // next and previous variable we get from or url
         setNextPageUrl(response.data.next);
-        setNextPageUrl(response.data.previous);
-        setPokemon(response.data.results)
+        console.log(response.data.next);
+        setPrevPageUrl(response.data.previous);
+        setPokemon(response.data.results);
+      //        setting the current page url to the initial url 
+      //        setCurrentPageUrl(initalUrl);
+      setLoading(false);
 
       })
   };
@@ -51,7 +59,15 @@ function App() {
     <>
       <div className="App">
         <Header />
-        <LandingPage pokemon={pokemon} />
+        <Pagination 
+         gotoNextPage ={gotoNextPage}
+         returntoPrevpage={returntoPrevpage} />
+        <div>
+          {loading ? <h1>Loading...</h1> : (
+            <LandingPage pokemon={pokemon} />
+          )}
+        </div>
+        
         <Pagination 
          gotoNextPage ={gotoNextPage}
          returntoPrevpage={returntoPrevpage} />
