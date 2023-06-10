@@ -3,7 +3,7 @@ import './Footer.css';
 export const Footer = () => {
   return (
     <div className='footer'>
-      <h1>Made by Katarina Krstić</h1>
+      <p>Made by Katarina Krstić</p>
     </div>
   );
 }

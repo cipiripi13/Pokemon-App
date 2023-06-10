@@ -21,6 +21,12 @@
  
   margin: 10px;
   border-radius: 40px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  /* padding: 5px; */
 }
 
 p{
@@ -28,4 +34,8 @@ p{
   text-transform: uppercase;
   color: rgb(255, 198, 0);
   text-shadow: 1px 2px 1px #3b82f6, 2px 3px 2px rgb(226,81, 81);
+}
+.pokemonImg {
+  box-shadow: 1px 2px 1px #3b82f6, 2px 3px 2px rgb(226,81, 81);
+  margin-bottom: 5px;
 }
