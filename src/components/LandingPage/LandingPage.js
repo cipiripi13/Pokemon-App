@@ -29,6 +29,8 @@ export const LandingPage = (props) => {
               <img src='https://placehold.co/200x200' alt='' className='pokemonImg'></img>
               {/* <img src='https://assets.pokemon.com/assets/cms2/img/pokedex/detail/001.png'></img> */}
                 <button>More Info</button>
+                <button>Like</button>
+               
               </div>
 
             )

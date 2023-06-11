@@ -23,18 +23,22 @@ function App() {
 
 
   const fetchPokemons = () => {
+    //   before we make a request to server we set his state to be false--to be loading, because we haven sent request
+    //after we fetch our data we set our state to be false --- line 42
+    setLoading(true);
     //    making a get request to the server to get all the pokemons
-
     axios.get(currentPageUrl).then((response) => {
-      console.log(response);
-      console.log("Stigao je odgovor sa glavnog fetcha... " + response);
-      // next and previous variable we get from or url
+      console.log(response.data);
+
+      // next and previous variable we get from our url
       setNextPageUrl(response.data.next);
-      console.log(response.data.next);
       setPrevPageUrl(response.data.previous);
+      //setting the pokemon to the data we get from the server
+
       setPokemon(response.data.results);
       //        setting the current page url to the initial url 
       //        setCurrentPageUrl(initalUrl);
+
       setLoading(false);
 
     })
@@ -43,9 +47,10 @@ function App() {
   //   useEffect is a hook that allows us to run some code when the component is mounted
   useEffect(() => {
     fetchPokemons();
-    // when te url of page changes reload whole page and fetch new data
+    // when te url of page changes reload whole page and fetch new data, if it doesent change dont bother doing anything
   }, [currentPageUrl])
 
+  // **********************************************************************************************************************
   // creating simple function for going to next and previous page
   function gotoNextPage() {
     setCurrentPageUrl(nextPageUrl);
@@ -61,31 +66,32 @@ function App() {
       <div className="App">
         <Header />
         <Routes>
-          <Route path='/' 
-          
-          element={
-            <>
-              <Pagination gotoNextPage={gotoNextPage} returntoPrevpage={returntoPrevpage} />
-              <div>
-                {loading ? <h1>Loading...</h1> : (
-                  <LandingPage pokemon={pokemon} />
-                )}
-              </div>
+          <Route path='/'
 
-              <Pagination gotoNextPage={gotoNextPage} returntoPrevpage={returntoPrevpage} />
+            element={
+              <>
+                <Pagination gotoNextPage={gotoNextPage} returntoPrevpage={returntoPrevpage} />
+                <div>
+                  {/* down here we set if loading is true then show me a message that iti is loading and that we are waiting for the response */}
+                  {loading ? <h1>Loading...</h1> : (
+                    <LandingPage pokemon={pokemon} />
+                  )}
+                </div>
+
+                <Pagination gotoNextPage={gotoNextPage} returntoPrevpage={returntoPrevpage} />
               </>
-        }
+            }
 
-    />
+          />
 
-            </Routes>
+        </Routes>
 
-            <Footer />
+        <Footer />
 
-       
-        </div>
-        </>
-        );
+
+      </div>
+    </>
+  );
 }
 
-        export default App;
+export default App;

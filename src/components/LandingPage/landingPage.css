@@ -13,7 +13,7 @@
 }
 .pokemonItem{
   width: 400px;
-  height: 400px;
+  height: fit-content;
   border: 1px solid rgb(226, 81, 81);
   /* box-shadow: 1px 2px 3px #e11d48; */
   box-shadow: rgb(255, 198, 0) -2px -2px 0px 2px, rgb(226, 81, 81) 0px 0px 0px 4px, rgba(0, 0, 0, 0.05) 0px 0px 2px 7px;
