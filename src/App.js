@@ -70,7 +70,10 @@ function App() {
 
             element={
               <>
-                <Pagination gotoNextPage={gotoNextPage} returntoPrevpage={returntoPrevpage} />
+              {/* here we do a cheking so our previous button will not show on first page and next on last page */}
+                <Pagination 
+                gotoNextPage={nextPageUrl ? gotoNextPage : currentPageUrl} 
+                returntoPrevpage={prevPageUrl ? returntoPrevpage : null} />
                 <div>
                   {/* down here we set if loading is true then show me a message that iti is loading and that we are waiting for the response */}
                   {loading ? <h1>Loading...</h1> : (
