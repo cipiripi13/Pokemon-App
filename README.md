@@ -18,3 +18,4 @@ displaying data from server to console
 creating main components and putting right component with it css file
 Doing component by component and styling it
 Making it responsive
+![Laptop-1-1440x900](https://github.com/cipiripi13/Pokemon-App/assets/68286246/aacb6ee7-cc50-461f-a517-6c247da66ac4)
