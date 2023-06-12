@@ -7,6 +7,7 @@ export const Header = ({setSortOrder, sortOrder, searchText, setSearchText}) => 
     <div className="header">
       <div className="logo" onClick={()=>{
         navigate('/');
+        window.location.reload();
       }}>
         <img src='https://www.freepnglogos.com/uploads/pokemon-logo-text-png-7.png' className='logoImg' alt='logo'></img>
       </div>

@@ -17,7 +17,7 @@ export const SearchResult = (props) => {
 
   return (
     <div className="landingPage">
-      <h1>rezultat pretrage</h1>
+      {/* <h1>rezultat pretrage</h1> */}
       {
         <div className='pokemonList'>
           {searchResults.map((item, index) => {
@@ -30,7 +30,7 @@ export const SearchResult = (props) => {
       }
       {
         searchResults.length === 0 && 
-         (<div>Nothing matched your search</div>) 
+         (<button>Nothing matched your search</button>) 
         
       }
     </div>
